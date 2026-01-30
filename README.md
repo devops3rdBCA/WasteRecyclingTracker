@@ -1,244 +1,133 @@
-# Waste Recycling Tracker
+🟢 Waste Recycling Tracker
+Hi! This is my full-stack project called Waste Recycling Tracker, built using React for the frontend and Spring Boot for the backend. It helps families submit their recyclable waste and lets recycling centers manage and update the status of those entries.
 
-A comprehensive full-stack waste recycling management system built with Spring Boot and React.
+🌟 What It Does
+Family Login: Add waste entries (name, type, quantity), view and update them.
 
-## 🌍 Features
+Recycling Center Login: See all entries, change status (Pending → Processing → Recycled), and remove recycled ones.
 
-- **Family Dashboard**: Track and manage household waste entries
-- **Recycling Center Dashboard**: Monitor and process waste from multiple families
-- **Statistics & Reports**: Real-time analytics on waste collection and recycling
-- **User Management**: Role-based access control (Family, Center, Admin)
-- **Notifications**: Email alerts for status changes and recycling completion
-- **Production Ready**: Dockerized, scalable architecture with PostgreSQL
+Admin Panel (optional): Manage users and view statistics.
 
-## 🏗️ Architecture
+Email Notifications: Sends alerts when status changes or recycling is done.
 
-### Backend (Spring Boot)
-- Java 17 with Spring Boot 3.2.0
-- JPA/Hibernate ORM
-- PostgreSQL database (H2 for development)
-- RESTful API with CORS support
-- Role-based security
+Statistics Dashboard: Shows how much waste has been collected and recycled.
 
-### Frontend (React + Vite)
-- React 18.2.0
-- React Router for navigation
-- Bootstrap 5 for UI
-- Axios for API communication
+🧱 Tech Stack
+Backend
+Java 17 + Spring Boot
 
-### Deployment
-- Docker containerization
-- Docker Compose for local development
-- GitHub Actions CI/CD
-- Vercel for frontend deployment
-- Heroku/AWS/Azure for backend deployment
+JPA + Hibernate
 
-## 📦 Project Structure
+H2 (for testing), PostgreSQL (for production)
 
-```
+REST APIs with role-based access
+
+Frontend
+React + Vite
+
+React Router
+
+Axios for API calls
+
+Bootstrap for styling
+
+Deployment
+Docker + Docker Compose
+
+Vercel for frontend
+
+Heroku/AWS/Azure for backend
+
+GitHub Actions for CI/CD
+
+📁 Folder Structure
+Code
 waste-recycling-tracker/
-├── backend/                    # Spring Boot application
-│   ├── src/main/java/
-│   ├── src/main/resources/
-│   ├── pom.xml
-│   ├── Dockerfile
-│   └── target/
-├── frontend/                   # React application
-│   ├── src/
-│   ├── package.json
-│   ├── Dockerfile
-│   └── dist/
-├── docker-compose.yml          # Full stack orchestration
-├── DEPLOYMENT_GUIDE.md         # Production deployment guide
-├── DATABASE_MIGRATION.md       # Database migration scripts
-└── .env.example                # Environment variables template
-```
-
-## 🚀 Quick Start
-
-### Development (Local)
-
-```bash
-# Clone repository
-git clone <your-repo-url>
+├── backend/         # Spring Boot app
+├── frontend/        # React app
+├── docker-compose.yml
+├── .env.example     # Environment config
+🚀 How to Run Locally
+bash
+# Clone the repo
+git clone https://github.com/jeynisha36/WasteRecyclingTracker.git
 cd waste-recycling-tracker
 
-# Backend
+# Start backend
 cd backend
-mvn clean install
 mvn spring-boot:run
 
-# Frontend (new terminal)
+# Start frontend (in another terminal)
 cd frontend
 npm install
 npm run dev
-```
-
-### Production (Docker)
-
-```bash
-# Windows
-deploy-docker.bat prod
-
-# Linux/Mac
-chmod +x deploy-docker.sh
-./deploy-docker.sh prod
-```
-
-## 📋 Prerequisites
-
-- Java 17+
-- Node.js 18+
-- PostgreSQL 12+ (for production)
-- Docker & Docker Compose (for containerized deployment)
-- Git
-
-## 🔧 Configuration
-
-### Environment Variables
-
-Copy `.env.example` to `.env` and configure:
-
-```bash
-cp .env.example .env
-```
-
-Update the following variables:
-- `DB_HOST`: PostgreSQL host
-- `DB_USER`: Database user
-- `DB_PASSWORD`: Database password
-- `REACT_APP_API_URL`: Backend API URL
-- `CORS_ORIGINS`: Allowed frontend origins
-
-### Backend Configuration
-
-- **Development**: `application.properties` (H2 in-memory)
-- **Production**: `application-prod.properties` (PostgreSQL)
-
-Start with production profile:
-```bash
-java -jar app.jar --spring.profiles.active=prod
-```
-
-## 📊 API Endpoints
-
-### Family Dashboard
-- `GET /api/family/{name}` - Get family waste entries
-- `POST /api/family` - Add new waste entry
-- `PUT /api/family/{id}` - Update waste entry
-- `DELETE /api/family/{id}` - Delete waste entry
-
-### Recycling Center
-- `GET /api/center` - Get all entries
-- `PUT /api/center/{id}` - Update entry status
-- `DELETE /api/center/{id}` - Delete recycled entry
-
-### Statistics
-- `GET /api/statistics` - Get overall statistics
-- `GET /api/statistics/family/{name}` - Get family-specific statistics
-
-### User Management
-- `GET /api/admin/users` - List all users
-- `POST /api/admin/users` - Create user
-- `PUT /api/admin/users/{id}` - Update user
-- `DELETE /api/admin/users/{id}` - Delete user
-
-### Notifications
-- `POST /api/notifications/status-change` - Send status change notification
-- `POST /api/notifications/pickup` - Send pickup notification
-- `POST /api/notifications/recycling-completed` - Send completion notification
-
-## 🐳 Docker Deployment
-
-### Single Container Development
-
-```bash
+🐳 Docker Setup
+bash
+# Run both frontend and backend with Docker
 docker-compose up -d
-```
+🔧 Environment Setup
+Copy .env.example to .env and fill in:
 
-### Production Deployment
+DB_HOST, DB_USER, DB_PASSWORD
 
-See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) for detailed instructions on:
-- Database migration from H2 to PostgreSQL
-- Heroku deployment
-- AWS EC2 deployment
-- Azure App Service deployment
-- SSL/TLS certificate setup
+REACT_APP_API_URL → your backend URL
 
-## 🌐 Frontend Deployment (Vercel)
+CORS_ORIGINS → allowed frontend domains
 
-1. Push code to GitHub
-2. Go to [vercel.com](https://vercel.com)
-3. Import GitHub repository
-4. Vercel auto-detects React + Vite
-5. Configure environment variables:
-   - `REACT_APP_API_URL`: Your backend API URL
-6. Deploy!
+📡 API Overview
+Family
+GET /api/family/{name}
 
-## 🔐 Security
+POST /api/family
 
-- CORS configured for production domains
-- Role-based access control (RBAC)
-- Spring Security enabled
-- Password encryption (bcrypt)
-- HTTPS/SSL support
-- Environment variables for sensitive data
+PUT /api/family/{id}
 
-## 📊 Monitoring
+DELETE /api/family/{id}
 
-Endpoints available at `/actuator`:
-- `/actuator/health` - Application health
-- `/actuator/metrics` - Performance metrics
-- `/actuator/info` - Application info
+Center
+GET /api/center
 
-## 🐛 Troubleshooting
+PUT /api/center/{id}
 
-### Backend won't start
-```bash
-# Check if port 8081 is in use
-lsof -i :8081
+DELETE /api/center/{id}
 
-# Use different port
-java -jar app.jar --server.port=9000
-```
+Admin & Stats
+GET /api/statistics
 
-### Database connection issues
-```bash
-# Verify PostgreSQL is running
-pg_isready -h localhost -p 5432
+GET /api/admin/users
 
-# Check database credentials in .env
-```
+🌐 Frontend Deployment (Vercel)
+Push code to GitHub
 
-### Frontend won't connect to backend
-```bash
-# Verify CORS is properly configured
-# Check REACT_APP_API_URL in environment variables
-# Ensure backend is running on the correct port
-```
+Go to vercel.com
 
-## 📄 Documentation
+Import your repo
 
-- [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) - Complete production deployment guide
-- [DATABASE_MIGRATION.md](DATABASE_MIGRATION.md) - Database migration strategies
-- See `.env.example` for all configuration options
+Set REACT_APP_API_URL in Vercel settings
 
-## 🤝 Contributing
+Deploy!
 
-1. Create a feature branch: `git checkout -b feature/your-feature`
-2. Commit changes: `git commit -m "Add your feature"`
-3. Push to branch: `git push origin feature/your-feature`
-4. Submit a pull request
+🛡️ Security
+Role-based access (Family, Center, Admin)
 
-## 📝 License
+Passwords encrypted with bcrypt
 
-This project is provided as-is for educational and production use.
+CORS and HTTPS support
 
-## 📞 Support
+🛠️ Troubleshooting
+If backend port is busy → change it with --server.port=9000
 
-For issues, questions, or suggestions, please open an GitHub issue or contact the development team.
+If frontend can't connect → check REACT_APP_API_URL and CORS settings
 
----
+If DB fails → make sure PostgreSQL is running and credentials are correct
 
-**Last Updated**: January 30, 2026
-**Status**: Production Ready ✅
+📄 Extra Docs
+DEPLOYMENT_GUIDE.md → how to deploy to cloud
+
+DATABASE_MIGRATION.md → switch from H2 to PostgreSQL
+
+🤝 Contributing
+Feel free to fork the repo, make changes, and submit a pull request!
+
+📝 License
+This project is for learning and production use. Built with ❤️ by Jeynisha E, III-BCA (SF), aspiring full-stack developer.
