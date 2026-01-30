@@ -159,7 +159,17 @@ Example URL: `https://waste-recycling-tracker-xxxxx.vercel.app`
 
 Choose your platform:
 
-#### Option A: Heroku (Easiest)
+#### Option A: Render (No CLI install)
+1. Go to [render.com](https://render.com) → **New** → **Web Service**
+2. Connect GitHub repo: **Jeynisha36/WasteRecyclingTracker**
+3. **Root Directory**: `backend`
+4. **Build Command**: `mvn clean package -DskipTests`
+5. **Start Command**: `java -jar target/waste-recycling-tracker-backend-1.0.0.jar`
+6. Add env vars:
+   - `SPRING_PROFILES_ACTIVE=prod`
+   - Add a **PostgreSQL** database on Render and use its `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`
+
+#### Option B: Heroku (CLI required)
 ```bash
 heroku login
 heroku create waste-recycling-tracker-api
@@ -168,13 +178,13 @@ cd backend
 git subtree push --prefix backend heroku main
 ```
 
-#### Option B: Docker (Flexible)
+#### Option C: Docker (Flexible)
 ```bash
 deploy-docker.bat prod  # Windows
 ./deploy-docker.sh prod  # Linux/Mac
 ```
 
-#### Option C: AWS/Azure (See DEPLOYMENT_GUIDE.md)
+#### Option D: AWS/Azure (See DEPLOYMENT_GUIDE.md)
 
 ✅ Your backend is now LIVE!
 
