@@ -65,7 +65,8 @@ npm run dev
 bash
 # Run both frontend and backend with Docker
 docker-compose up -d
-🔧 Environment Setup
+
+🔧 Environment Setup -
 Copy .env.example to .env and fill in:
 
 DB_HOST, DB_USER, DB_PASSWORD
@@ -74,60 +75,54 @@ REACT_APP_API_URL → your backend URL
 
 CORS_ORIGINS → allowed frontend domains
 
-📡 API Overview
-Family
-GET /api/family/{name}
+📡 API Overview -
+-Family
+GET /api/family/{name},
+POST /api/family,
+PUT /api/family/{id},
+DELETE /api/family/{id}.
 
-POST /api/family
+-Center
+GET /api/center,
+PUT /api/center/{id},
+DELETE /api/center/{id}.
 
-PUT /api/family/{id}
+-Admin & Stats
+GET /api/statistics,
+GET /api/admin/users.
 
-DELETE /api/family/{id}
+🌐 Frontend Deployment (Vercel) -
+ * Push code to GitHub
+   
+ * Go to vercel.com
 
-Center
-GET /api/center
+ * Import your repo
 
-PUT /api/center/{id}
+ * Set REACT_APP_API_URL in Vercel settings
 
-DELETE /api/center/{id}
+ * Deploy!
 
-Admin & Stats
-GET /api/statistics
+🛡️ Security -
+ * Role-based access (Family, Center, Admin)
 
-GET /api/admin/users
+ * Passwords encrypted with bcrypt
 
-🌐 Frontend Deployment (Vercel)
-Push code to GitHub
+ * CORS and HTTPS support
 
-Go to vercel.com
+🛠️ Troubleshooting -
+ * If backend port is busy → change it with --server.port=9000
 
-Import your repo
+ * If frontend can't connect → check REACT_APP_API_URL and CORS settings
 
-Set REACT_APP_API_URL in Vercel settings
+ * If DB fails → make sure PostgreSQL is running and credentials are correct
 
-Deploy!
+📄 Extra Docs -
+ * DEPLOYMENT_GUIDE.md → how to deploy to cloud
 
-🛡️ Security
-Role-based access (Family, Center, Admin)
+ * DATABASE_MIGRATION.md → switch from H2 to PostgreSQL
 
-Passwords encrypted with bcrypt
+🤝 Contributing -
+          Feel free to fork the repo, make changes, and submit a pull request!
 
-CORS and HTTPS support
-
-🛠️ Troubleshooting
-If backend port is busy → change it with --server.port=9000
-
-If frontend can't connect → check REACT_APP_API_URL and CORS settings
-
-If DB fails → make sure PostgreSQL is running and credentials are correct
-
-📄 Extra Docs
-DEPLOYMENT_GUIDE.md → how to deploy to cloud
-
-DATABASE_MIGRATION.md → switch from H2 to PostgreSQL
-
-🤝 Contributing
-Feel free to fork the repo, make changes, and submit a pull request!
-
-📝 License
-This project is for learning and production use. Built with ❤️ by Jeynisha E, III-BCA (SF), aspiring full-stack developer.
+📝 License -
+         This project is for learning and production use. Built with ❤️ by Jeynisha E, III-BCA (SF), aspiring full-stack developer.
