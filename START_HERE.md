@@ -159,15 +159,19 @@ Example URL: `https://waste-recycling-tracker-xxxxx.vercel.app`
 
 Choose your platform:
 
-#### Option A: Render (No CLI install)
+#### Option A: Render (Recommended - No CLI install)
 1. Go to [render.com](https://render.com) → **New** → **Web Service**
 2. Connect GitHub repo: **Jeynisha36/WasteRecyclingTracker**
-3. **Root Directory**: `backend`
-4. **Build Command**: `mvn clean package -DskipTests`
-5. **Start Command**: `java -jar target/waste-recycling-tracker-backend-1.0.0.jar`
-6. Add env vars:
+3. **Select Runtime**: Docker (Render auto-detects from Dockerfile)
+4. **Root Directory**: `backend`
+5. Render automatically:
+   - Builds from `backend/Dockerfile`
+   - Exposes port 8081
+   - Starts the Spring Boot application
+6. Add environment variables:
    - `SPRING_PROFILES_ACTIVE=prod`
-   - Add a **PostgreSQL** database on Render and use its `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`
+   - Optional: Add a **PostgreSQL** database on Render and use its `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`
+7. Click **Deploy** and wait 5-10 minutes for build to complete
 
 #### Option B: Heroku (CLI required)
 ```bash
