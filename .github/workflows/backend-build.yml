@@ -62,15 +62,3 @@ jobs:
         run: |
           cd backend
           mvn test
-
-      - name: SonarCloud analysis
-        if: ${{ env.SONAR_TOKEN != '' && env.SONAR_PROJECT_KEY != '' && env.SONAR_HOST_URL != '' && env.SONAR_ORGANIZATION != '' }}
-        run: |
-          cd backend
-          mvn sonar:sonar \
-            -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }} \
-            -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} \
-            -Dsonar.host.url=${{ env.SONAR_HOST_URL }} \
-            -Dsonar.login=${{ env.SONAR_TOKEN }} \
-            -Dsonar.sources=src/main/java \
-            -Dsonar.exclusions=**/target/**
