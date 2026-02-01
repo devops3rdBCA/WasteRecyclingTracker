@@ -77,8 +77,3 @@ jobs:
             -Dsonar.sources=backend/src/main/java,frontend/src
             -Dsonar.java.binaries=backend/target/classes
             -Dsonar.exclusions=**/target/**,**/node_modules/**,**/dist/**,**/build/**,**/coverage/**
-
-      - name: Upload coverage reports
-        uses: codecov/codecov-action@v3
-        with:
-          files: ./backend/target/site/jacoco/index.html
