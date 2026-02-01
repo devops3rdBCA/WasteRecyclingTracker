@@ -63,17 +63,14 @@ jobs:
           cd backend
           mvn test
 
-      # - name: SonarCloud analysis (combined)
-      #   if: ${{ env.SONAR_TOKEN != '' && env.SONAR_PROJECT_KEY != '' && env.SONAR_HOST_URL != '' && env.SONAR_ORGANIZATION != '' }}
-      #   uses: sonarsource/sonarcloud-github-action@v2
-      #   env:
-      #     SONAR_TOKEN: ${{ env.SONAR_TOKEN }}
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     args: >
-      #       -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
-      #       -Dsonar.organization=${{ env.SONAR_ORGANIZATION }}
-      #       -Dsonar.host.url=${{ env.SONAR_HOST_URL }}
-      #       -Dsonar.sources=backend/src/main/java,frontend/src
-      #       -Dsonar.java.binaries=backend/target/classes
-      #       -Dsonar.exclusions=**/target/**,**/node_modules/**,**/dist/**,**/build/**,**/coverage/**
+      - name: SonarCloud analysis
+        if: ${{ env.SONAR_TOKEN != '' && env.SONAR_PROJECT_KEY != '' && env.SONAR_HOST_URL != '' && env.SONAR_ORGANIZATION != '' }}
+        run: |
+          cd backend
+          mvn sonar:sonar \
+            -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }} \
+            -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} \
+            -Dsonar.host.url=${{ env.SONAR_HOST_URL }} \
+            -Dsonar.login=${{ env.SONAR_TOKEN }} \
+            -Dsonar.sources=src/main/java \
+            -Dsonar.exclusions=**/target/**
