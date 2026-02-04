@@ -4,7 +4,6 @@
   "installCommand": "npm install",
   "framework": "vite",
   "outputDirectory": "dist",
-  "domains": ["waste-recycling-tracker.com", "www.waste-recycling-tracker.com"],
   "rewrites": [
     {
       "source": "/(.*)",
