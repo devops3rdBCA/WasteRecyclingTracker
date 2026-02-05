@@ -3,21 +3,21 @@
 # Roll Number 39 - Waste Recycling Tracker
 
 Write-Host ""
-Write-Host "════════════════════════════════════════════════════════════════" -ForegroundColor Cyan
-Write-Host "   🚀 WORKFLOW ENABLEMENT WIZARD - ROLL NUMBER 39   " -ForegroundColor Green
-Write-Host "════════════════════════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "================================================================" -ForegroundColor Cyan
+Write-Host "   WORKFLOW ENABLEMENT WIZARD - ROLL NUMBER 39   " -ForegroundColor Green
+Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host ""
 
 # Check if git repository
 if (-not (Test-Path ".git")) {
-    Write-Host "❌ ERROR: Not in a git repository!" -ForegroundColor Red
+    Write-Host "ERROR: Not in a git repository!" -ForegroundColor Red
     Write-Host "   Please run this script from d:\test directory" -ForegroundColor Yellow
     exit 1
 }
 
-Write-Host "📋 This script will guide you through enabling all GitHub workflows" -ForegroundColor Yellow
+Write-Host "This script will guide you through enabling all GitHub workflows" -ForegroundColor Yellow
 Write-Host ""
-Write-Host "You'll need to set up:" -ForegroundColor White
+Write-Host "You will need to set up:" -ForegroundColor White
 Write-Host "  1. SonarCloud (code quality analysis)" -ForegroundColor Gray
 Write-Host "  2. Docker Hub (container registry)" -ForegroundColor Gray
 Write-Host "  3. GitHub Secrets (secure credentials)" -ForegroundColor Gray
@@ -30,9 +30,9 @@ if ($continue -ne "y" -and $continue -ne "Y") {
 }
 
 Write-Host ""
-Write-Host "════════════════════════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host "   STEP 1: SONARCLOUD SETUP   " -ForegroundColor Green
-Write-Host "════════════════════════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host ""
 
 Write-Host "1. Open your browser and go to: https://sonarcloud.io" -ForegroundColor White
@@ -40,15 +40,15 @@ Write-Host "2. Click 'Log in with GitHub'" -ForegroundColor White
 Write-Host "3. Authorize SonarCloud" -ForegroundColor White
 Write-Host ""
 
-Read-Host "Press Enter when you've logged in..."
+Read-Host "Press Enter when you have logged in"
 
 Write-Host ""
-Write-Host "4. Click '+' (top right) → 'Create new organization'" -ForegroundColor White
+Write-Host "4. Click '+' (top right) -> 'Create new organization'" -ForegroundColor White
 Write-Host "5. Choose 'Free plan'" -ForegroundColor White
 Write-Host "6. Organization Key: your-github-username (e.g., jeynisha36)" -ForegroundColor White
 Write-Host ""
 
-Read-Host "Press Enter when organization is created..."
+Read-Host "Press Enter when organization is created"
 
 Write-Host ""
 Write-Host "7. Click 'Analyze new project'" -ForegroundColor White
@@ -62,48 +62,45 @@ $sonarToken = Read-Host "Paste your SONAR_TOKEN here"
 $sonarOrg = Read-Host "Enter your SonarCloud organization key (e.g., jeynisha36)"
 
 if ([string]::IsNullOrWhiteSpace($sonarToken) -or [string]::IsNullOrWhiteSpace($sonarOrg)) {
-    Write-Host "❌ ERROR: SonarCloud credentials cannot be empty!" -ForegroundColor Red
+    Write-Host "ERROR: SonarCloud credentials cannot be empty!" -ForegroundColor Red
     exit 1
 }
 
 Write-Host ""
-Write-Host "✅ SonarCloud credentials captured!" -ForegroundColor Green
+Write-Host "SonarCloud credentials captured!" -ForegroundColor Green
 Write-Host ""
 
-Write-Host "════════════════════════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host "   STEP 2: DOCKER HUB SETUP   " -ForegroundColor Green
-Write-Host "════════════════════════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host ""
 
 Write-Host "1. Open your browser and go to: https://hub.docker.com" -ForegroundColor White
 Write-Host "2. Sign up or log in" -ForegroundColor White
-Write-Host "3. Click your username → 'Account Settings' → 'Security'" -ForegroundColor White
+Write-Host "3. Click your username -> 'Account Settings' -> 'Security'" -ForegroundColor White
 Write-Host "4. Click 'New Access Token'" -ForegroundColor White
 Write-Host "5. Description: 'GitHub Actions - Waste Tracker'" -ForegroundColor White
 Write-Host "6. Permissions: 'Read, Write, Delete'" -ForegroundColor White
 Write-Host "7. Click 'Generate' and COPY THE TOKEN!" -ForegroundColor Yellow
 Write-Host ""
 
-Read-Host "Press Enter when you have your Docker Hub credentials..."
+Read-Host "Press Enter when you have your Docker Hub credentials"
 
 $dockerUsername = Read-Host "Enter your Docker Hub username"
-$dockerPassword = Read-Host "Paste your Docker Hub access token" -AsSecureString
-$dockerPasswordPlain = [Runtime.InteropServices.Marshal]::PtrToStringAuto(
-    [Runtime.InteropServices.Marshal]::SecureStringToBSTR($dockerPassword)
-)
+$dockerPassword = Read-Host "Paste your Docker Hub access token"
 
-if ([string]::IsNullOrWhiteSpace($dockerUsername) -or [string]::IsNullOrWhiteSpace($dockerPasswordPlain)) {
-    Write-Host "❌ ERROR: Docker Hub credentials cannot be empty!" -ForegroundColor Red
+if ([string]::IsNullOrWhiteSpace($dockerUsername) -or [string]::IsNullOrWhiteSpace($dockerPassword)) {
+    Write-Host "ERROR: Docker Hub credentials cannot be empty!" -ForegroundColor Red
     exit 1
 }
 
 Write-Host ""
-Write-Host "✅ Docker Hub credentials captured!" -ForegroundColor Green
+Write-Host "Docker Hub credentials captured!" -ForegroundColor Green
 Write-Host ""
 
-Write-Host "════════════════════════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host "   STEP 3: ADD GITHUB SECRETS   " -ForegroundColor Green
-Write-Host "════════════════════════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host ""
 
 Write-Host "Now you need to add these secrets to your GitHub repository:" -ForegroundColor Yellow
@@ -144,21 +141,21 @@ Add these secrets to: https://github.com/Jeynisha36/WasteRecyclingTracker/settin
 SONAR_TOKEN=$sonarToken
 SONAR_ORGANIZATION=$sonarOrg
 DOCKER_USERNAME=$dockerUsername
-DOCKER_PASSWORD=[Paste your Docker Hub access token]
+DOCKER_PASSWORD=$dockerPassword
 
 NOTE: Keep this file secure and do NOT commit it to git!
 "@ | Out-File -FilePath $secretsFile -Encoding UTF8
 
-Write-Host "💾 Credentials saved to: $secretsFile" -ForegroundColor Green
+Write-Host "Credentials saved to: $secretsFile" -ForegroundColor Green
 Write-Host "   (This file is NOT tracked by git)" -ForegroundColor Gray
 Write-Host ""
 
 Read-Host "Press Enter when you have added all 4 secrets to GitHub"
 
 Write-Host ""
-Write-Host "════════════════════════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host "   STEP 4: TRIGGER WORKFLOWS   " -ForegroundColor Green
-Write-Host "════════════════════════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host ""
 
 Write-Host "Creating a commit to trigger all workflows..." -ForegroundColor Yellow
@@ -167,43 +164,43 @@ try {
     # Create empty commit
     git commit --allow-empty -m "ci: enable all workflows with configured secrets" 2>&1 | Out-Null
     
-    Write-Host "✅ Commit created!" -ForegroundColor Green
+    Write-Host "Commit created!" -ForegroundColor Green
     
     # Push to GitHub
     Write-Host "Pushing to GitHub..." -ForegroundColor Yellow
     git push origin main 2>&1 | Out-Null
     
-    Write-Host "✅ Pushed to GitHub!" -ForegroundColor Green
+    Write-Host "Pushed to GitHub!" -ForegroundColor Green
     Write-Host ""
     
 } catch {
-    Write-Host "❌ Error pushing to GitHub: $_" -ForegroundColor Red
+    Write-Host "Error pushing to GitHub: $_" -ForegroundColor Red
     Write-Host "Please manually run: git push origin main" -ForegroundColor Yellow
 }
 
 Write-Host ""
-Write-Host "════════════════════════════════════════════════════════════════" -ForegroundColor Cyan
-Write-Host "   ✅ SETUP COMPLETE!   " -ForegroundColor Green
-Write-Host "════════════════════════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "================================================================" -ForegroundColor Cyan
+Write-Host "   SETUP COMPLETE!   " -ForegroundColor Green
+Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host ""
 
-Write-Host "🎉 All workflows are now configured!" -ForegroundColor Green
+Write-Host "All workflows are now configured!" -ForegroundColor Green
 Write-Host ""
-Write-Host "📊 Check workflow status at:" -ForegroundColor Yellow
+Write-Host "Check workflow status at:" -ForegroundColor Yellow
 Write-Host "   https://github.com/Jeynisha36/WasteRecyclingTracker/actions" -ForegroundColor Cyan
 Write-Host ""
 
 Write-Host "Expected results (in ~5 minutes):" -ForegroundColor White
-Write-Host "  ✅ Backend Build & Test - PASSING" -ForegroundColor Green
-Write-Host "  ✅ Vercel Deployment - PASSING" -ForegroundColor Green
-Write-Host "  ✅ SonarCloud Analysis - PASSING" -ForegroundColor Green
-Write-Host "  ✅ Docker Build & Push - PASSING" -ForegroundColor Green
+Write-Host "  Backend Build & Test - PASSING" -ForegroundColor Green
+Write-Host "  Vercel Deployment - PASSING" -ForegroundColor Green
+Write-Host "  SonarCloud Analysis - PASSING" -ForegroundColor Green
+Write-Host "  Docker Build & Push - PASSING" -ForegroundColor Green
 Write-Host ""
 
-Write-Host "📚 For troubleshooting, see: WORKFLOW_SETUP_GUIDE.md" -ForegroundColor Gray
+Write-Host "For troubleshooting, see: WORKFLOW_SETUP_GUIDE.md" -ForegroundColor Gray
 Write-Host ""
 
-Write-Host "════════════════════════════════════════════════════════════════" -ForegroundColor Cyan
+Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host ""
 
 # Open browser to GitHub Actions
@@ -213,5 +210,5 @@ if ($openBrowser -eq "y" -or $openBrowser -eq "Y") {
 }
 
 Write-Host ""
-Write-Host "✅ Setup wizard complete! All 11 tasks are now fully enabled." -ForegroundColor Green
+Write-Host "Setup wizard complete! All 11 tasks are now fully enabled." -ForegroundColor Green
 Write-Host ""
