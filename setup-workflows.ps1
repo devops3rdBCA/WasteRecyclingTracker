@@ -153,7 +153,7 @@ Write-Host "💾 Credentials saved to: $secretsFile" -ForegroundColor Green
 Write-Host "   (This file is NOT tracked by git)" -ForegroundColor Gray
 Write-Host ""
 
-Read-Host "Press Enter when you've added all 4 secrets to GitHub..."
+Read-Host "Press Enter when you have added all 4 secrets to GitHub"
 
 Write-Host ""
 Write-Host "════════════════════════════════════════════════════════════════" -ForegroundColor Cyan
