@@ -1,6 +1,4 @@
-# 🎯 PROJECT DEMO - Waste Recycling Tracker
-**Roll Number: 39**  
-**Date:** February 5, 2026
+# 🎯 PROJECT DEMO - Waste Recycling Tracker 
 
 ---
 

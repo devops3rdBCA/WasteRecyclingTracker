@@ -1,5 +1,5 @@
 # 📊 PRESENTATION - Waste Recycling Tracker
-**Roll Number: 39** | **Full-Stack Web Application**
+ **Full-Stack Web Application**
 
 ---
 

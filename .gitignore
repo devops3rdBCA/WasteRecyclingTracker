@@ -33,6 +33,9 @@ Thumbs.db
 .env.local
 .env.*.local
 
+# Secrets (DO NOT COMMIT)
+SECRETS_REFERENCE.txt
+
 # Logs
 *.log
 logs/
