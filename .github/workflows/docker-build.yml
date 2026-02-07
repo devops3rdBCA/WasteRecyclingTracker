@@ -35,7 +35,7 @@ jobs:
         with:
           context: ./backend
           push: ${{ env.DOCKER_USERNAME != '' && env.DOCKER_PASSWORD != '' }}
-          tags: ${{ secrets.DOCKER_USERNAME }}/waste-tracker-backend:latest
+          tags: ${{ env.DOCKER_USERNAME != '' && format('{0}/waste-tracker-backend:latest', secrets.DOCKER_USERNAME) || 'waste-tracker-backend:latest' }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -75,7 +75,7 @@ jobs:
         with:
           context: ./frontend
           push: ${{ env.DOCKER_USERNAME != '' && env.DOCKER_PASSWORD != '' }}
-          tags: ${{ secrets.DOCKER_USERNAME }}/waste-tracker-frontend:latest
+          tags: ${{ env.DOCKER_USERNAME != '' && format('{0}/waste-tracker-frontend:latest', secrets.DOCKER_USERNAME) || 'waste-tracker-frontend:latest' }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
