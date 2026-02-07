@@ -1,14 +1,8 @@
 name: Docker Build & Push
-
 on:
-  push:
-    branches:
-      - main
-    tags:
-      - 'v*'
   pull_request:
-    branches:
-      - main
+  push:
+    branches: [main]
 
 env:
   REGISTRY: docker.io
@@ -44,8 +38,8 @@ jobs:
       - name: Image built successfully
         run: |
           echo "✓ Backend Docker image built successfully"
-          echo "Note: Docker Hub push is disabled. To enable pushing to Docker Hub,"
-          echo "configure DOCKER_USERNAME and DOCKER_PASSWORD secrets and update this workflow."
+          echo "Note: Docker Hub push is disabled."
+          echo "To enable it, see .github/SECRETS.md for more information."
 
   build-frontend:
     name: Build Frontend Docker Image
@@ -75,8 +69,8 @@ jobs:
       - name: Image built successfully
         run: |
           echo "✓ Frontend Docker image built successfully"
-          echo "Note: Docker Hub push is disabled. To enable pushing to Docker Hub,"
-          echo "configure DOCKER_USERNAME and DOCKER_PASSWORD secrets and update this workflow."
+          echo "Note: Docker Hub push is disabled."
+          echo "To enable it, see .github/SECRETS.md for more information."
 
   test-docker-compose:
     name: Test Docker Compose Stack

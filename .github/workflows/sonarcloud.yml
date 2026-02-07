@@ -1,27 +1,19 @@
 name: SonarCloud Analysis
-
 on:
-  push:
-    branches:
-      - main
   pull_request:
-    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
 
 jobs:
   sonarcloud-status:
     name: SonarCloud Analysis Status
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      
       - name: SonarCloud analysis skipped
         run: |
           echo "ℹ️  SonarCloud analysis is not configured for this repository"
           echo ""
           echo "SonarCloud provides code quality and security analysis."
-          echo "To enable it, you need to:"
-          echo "  1. Sign up at https://sonarcloud.io"
-          echo "  2. Create a project for this repository"
-          echo "  3. Add SONAR_TOKEN and SONAR_ORGANIZATION secrets to this repository"
-          echo "  4. Update this workflow file to run the actual analysis"
-          echo ""
-          echo "For now, this workflow will always pass successfully."
-          echo "See .github/SECRETS.md for more information."
+          echo "To enable it, see .github/SECRETS.md for more information."

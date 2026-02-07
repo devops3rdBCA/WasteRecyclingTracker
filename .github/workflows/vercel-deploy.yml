@@ -1,28 +1,19 @@
 name: Deploy to Vercel
 on:
-  push:
-    branches:
-      - main
   pull_request:
-    branches:
-      - main
+  push:
+    branches: [main]
 
 jobs:
   vercel-status:
     name: Vercel Deployment Status
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      
       - name: Vercel deployment skipped
         run: |
           echo "ℹ️  Vercel deployment is not configured for this repository"
           echo ""
           echo "Vercel provides serverless deployment for the frontend."
-          echo "To enable it, you need to:"
-          echo "  1. Sign up at https://vercel.com"
-          echo "  2. Link this repository to a Vercel project"
-          echo "  3. Add VERCEL_TOKEN, VERCEL_ORG_ID, and VERCEL_PROJECT_ID secrets"
-          echo "  4. Update this workflow file to run the actual deployment"
-          echo ""
-          echo "For now, this workflow will always pass successfully."
-          echo "The frontend can still be deployed manually or built locally."
-          echo "See .github/SECRETS.md for more information."
+          echo "To enable it, see .github/SECRETS.md for more information."
