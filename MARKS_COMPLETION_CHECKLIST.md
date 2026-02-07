@@ -423,10 +423,10 @@ services:
 
 **Docker Images**:
 ```
-docker.io/username/waste-tracker-backend:latest
-docker.io/username/waste-tracker-backend:main
-docker.io/username/waste-tracker-frontend:latest
-docker.io/username/waste-tracker-frontend:main
+docker.io/<dockerhub-username>/waste-tracker-backend:latest
+docker.io/<dockerhub-username>/waste-tracker-backend:main
+docker.io/<dockerhub-username>/waste-tracker-frontend:latest
+docker.io/<dockerhub-username>/waste-tracker-frontend:main
 ```
 
 **Image Optimization**:
@@ -448,8 +448,8 @@ docker build -t waste-tracker-frontend ./frontend
 docker-compose up --build
 
 # Push to Docker Hub
-docker push username/waste-tracker-backend:latest
-docker push username/waste-tracker-frontend:latest
+docker push <dockerhub-username>/waste-tracker-backend:latest
+docker push <dockerhub-username>/waste-tracker-frontend:latest
 ```
 
 **Location**: 
@@ -1123,7 +1123,6 @@ All 11 tasks verified and documented with comprehensive evidence.
 
 ---
 
-**Prepared by**: [Your Name]  
 **Roll Number**: 39  
-**Date**: February 5, 2026  
+**Date**: February 2026  
 **Status**: ✅ READY FOR SUBMISSION

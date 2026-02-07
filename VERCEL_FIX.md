@@ -30,7 +30,7 @@ GitHub Secrets (VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID) are not configur
 
 ### Step 3: Add GitHub Secrets
 
-1. Go to https://github.com/Jeynisha36/WasteRecyclingTracker/settings/secrets/actions
+1. Go to https://github.com/devops3rdBCA/WasteRecyclingTracker/settings/secrets/actions
 2. Click **"New repository secret"** and add 3 secrets:
 
 ```
@@ -60,7 +60,7 @@ git push origin main
 
 ### Step 5: Monitor Deployment
 
-1. Go to https://github.com/Jeynisha36/WasteRecyclingTracker/actions
+1. Go to https://github.com/devops3rdBCA/WasteRecyclingTracker/actions
 2. Watch the **"Deploy to Vercel"** workflow
 3. Should complete in ~2 minutes
 4. Once green ✅, visit: https://waste-recycling-tracker-production.vercel.app

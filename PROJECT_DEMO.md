@@ -331,14 +331,14 @@ docker-compose up --build
 docker build -t waste-tracker-backend:latest ./backend
 
 # Push to Docker Hub
-docker tag waste-tracker-backend:latest username/waste-tracker-backend:latest
-docker push username/waste-tracker-backend:latest
+docker tag waste-tracker-backend:latest <dockerhub-username>/waste-tracker-backend:latest
+docker push <dockerhub-username>/waste-tracker-backend:latest
 
 # Deploy to cloud (example: Railway/Heroku)
 docker run -p 8081:8081 \
   -e SPRING_PROFILES_ACTIVE=prod \
   -e DATABASE_URL=<prod-db-url> \
-  username/waste-tracker-backend:latest
+  <dockerhub-username>/waste-tracker-backend:latest
 ```
 
 ---
@@ -449,7 +449,7 @@ docker run -p 8081:8081 \
 - **Live Demo**: https://waste-recycling-tracker-production.vercel.app
 - **SonarCloud**: https://sonarcloud.io/project/overview
 - **API Documentation**: https://api.waste-tracker.com/swagger-ui.html
-- **Docker Hub**: https://hub.docker.com/r/username/waste-tracker
+- **Docker Hub**: https://hub.docker.com/r/<dockerhub-username>/waste-tracker
 
 ---
 
@@ -549,13 +549,11 @@ docker run -p 8081:8081 \
 
 ---
 
-## 📞 Contact
+## 📞 Project Information
 
-- **Name**: [Your Name]
-- **Roll Number**: 39
-- **Email**: your.email@example.com
-- **GitHub**: @yourusername
-- **LinkedIn**: linkedin.com/in/yourprofile
+**Repository**: https://github.com/devops3rdBCA/WasteRecyclingTracker  
+**Student**: BCA III Year  
+**Completion Date**: February 2026
 
 ---
 

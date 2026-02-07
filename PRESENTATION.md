@@ -659,29 +659,19 @@ Frontend Metrics (Lighthouse)
 
 ## 🔗 Project Resources
 
-- **📂 GitHub Repository**: https://github.com/your-org/waste-recycling-tracker
+- **📂 GitHub Repository**: https://github.com/devops3rdBCA/WasteRecyclingTracker
 - **🌐 Live Application**: https://waste-recycling-tracker-production.vercel.app
 - **📊 SonarCloud Dashboard**: https://sonarcloud.io/project/overview?id=waste-tracker
-- **🐳 Docker Hub**: https://hub.docker.com/r/username/waste-tracker
 - **📚 API Documentation**: [PROJECT_DEMO.md](PROJECT_DEMO.md#api-documentation)
 - **🚀 Deployment Guide**: [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
 
 ---
 
-## 📞 Contact Information
+## 📞 Project Information
 
-**Student Details:**
-- **Name**: [Your Name]
-- **Roll Number**: 39
-- **Course**: [Course Name]
-- **Semester**: [Semester]
-- **Email**: your.email@university.edu
-- **GitHub**: @yourusername
-
-**Project Timeline:**
-- **Start Date**: January 15, 2026
-- **Completion Date**: February 5, 2026
-- **Duration**: 3 weeks
+**Repository**: https://github.com/devops3rdBCA/WasteRecyclingTracker  
+**Student**: BCA III Year  
+**Completion Date**: February 2026
 
 ---
 

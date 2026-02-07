@@ -53,7 +53,7 @@ Save this - you'll need it in Step 4.
 2. Select **"Web Service"**
 3. Under "Connect a repository," search for:
    ```
-   Jeynisha36/WasteRecyclingTracker
+   devops3rdBCA/WasteRecyclingTracker
    ```
 4. Click to connect (authorize Render if prompted)
 5. Select the repository and click **"Connect"**

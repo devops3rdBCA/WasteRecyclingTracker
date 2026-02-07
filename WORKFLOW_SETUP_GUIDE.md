@@ -1,5 +1,5 @@
 # 🔧 WORKFLOW SETUP GUIDE - ENABLE ALL FEATURES
-**Complete Setup for All 11 Tasks** | **Roll Number 39**
+**Complete Setup for All 11 Tasks**
 
 ---
 
@@ -99,7 +99,7 @@ Follow these steps to enable all GitHub Actions workflows:
 
 ### 3.1 Navigate to Secrets Page
 
-1. Go to your repository: https://github.com/Jeynisha36/WasteRecyclingTracker
+1. Go to your repository: https://github.com/devops3rdBCA/WasteRecyclingTracker
 2. Click **"Settings"** tab
 3. Click **"Secrets and variables"** (left sidebar)
 4. Click **"Actions"**
@@ -167,7 +167,7 @@ git push origin main
 
 ### 4.2 Check Workflow Status
 
-1. Go to https://github.com/Jeynisha36/WasteRecyclingTracker/actions
+1. Go to https://github.com/devops3rdBCA/WasteRecyclingTracker/actions
 2. Watch the workflows run:
    - ✅ **Backend Build & Test** - Should pass
    - ✅ **Vercel Deployment** - Should pass (already working)
@@ -206,7 +206,7 @@ After setup, verify everything works:
 
 ```powershell
 # Check GitHub Actions
-# Visit: https://github.com/Jeynisha36/WasteRecyclingTracker/actions
+# Visit: https://github.com/devops3rdBCA/WasteRecyclingTracker/actions
 # All 5 workflows should show green checkmarks
 
 # Check SonarCloud

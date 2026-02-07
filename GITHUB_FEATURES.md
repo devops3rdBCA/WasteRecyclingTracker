@@ -1,5 +1,5 @@
 # 🚀 GITHUB PACK FEATURES DEMO
-**Waste Recycling Tracker** | Roll Number: 39
+**Waste Recycling Tracker**
 
 ---
 
@@ -154,10 +154,10 @@ test-docker-compose:
 ```
 
 **Docker Images**:
-- `username/waste-tracker-backend:latest`
-- `username/waste-tracker-backend:main`
-- `username/waste-tracker-backend:sha-abc123`
-- `username/waste-tracker-frontend:latest`
+- `<dockerhub-username>/waste-tracker-backend:latest`
+- `<dockerhub-username>/waste-tracker-backend:main`
+- `<dockerhub-username>/waste-tracker-backend:sha-abc123`
+- `<dockerhub-username>/waste-tracker-frontend:latest`
 
 **Features**:
 - Multi-platform builds (linux/amd64, linux/arm64)
@@ -799,11 +799,10 @@ This project demonstrates comprehensive utilization of GitHub's ecosystem and Gi
 **GitHub Pack Demo Complete! 🎉**
 
 For more details, visit:
-- 📂 Repository: https://github.com/your-org/waste-recycling-tracker
+- 📂 Repository: https://github.com/devops3rdBCA/WasteRecyclingTracker
 - 🌐 Live App: https://waste-recycling-tracker-production.vercel.app
 - 📊 SonarCloud: https://sonarcloud.io/project/overview
-- 🐳 Docker Hub: https://hub.docker.com/r/username/waste-tracker
 
 ---
 
-**Prepared by**: [Your Name] | **Roll**: 39 | **Date**: February 5, 2026
+**BCA III Year** | **February 2026**

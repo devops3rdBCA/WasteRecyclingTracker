@@ -1,4 +1,4 @@
-# � START HERE - Roll Number 39
+# 📋 START HERE - Waste Recycling Tracker
 **Waste Recycling Tracker** | **All 11 Tasks Complete (60/60 Marks)**
 
 ## ✅ PROJECT 100% COMPLETE
@@ -41,8 +41,8 @@ Your **full-stack Waste Recycling Tracker** application has ALL 11 rubric requir
 ## 🚀 LIVE DEPLOYMENTS
 
 - **Production**: https://waste-recycling-tracker-production.vercel.app
-- **GitHub**: https://github.com/Jeynisha36/WasteRecyclingTracker
-- **Actions**: [View Workflows](https://github.com/Jeynisha36/WasteRecyclingTracker/actions)
+- **GitHub**: https://github.com/devops3rdBCA/WasteRecyclingTracker
+- **Actions**: [View Workflows](https://github.com/devops3rdBCA/WasteRecyclingTracker/actions)
 
 ---
 
@@ -170,7 +170,7 @@ Choose your platform:
 
 #### Option A: Render (Recommended - No CLI install)
 1. Go to [render.com](https://render.com) → **New** → **Web Service**
-2. Connect GitHub repo: **Jeynisha36/WasteRecyclingTracker**
+2. Connect GitHub repo: **devops3rdBCA/WasteRecyclingTracker**
 3. **Select Runtime**: Docker (Render auto-detects from Dockerfile)
 4. **Root Directory**: `backend`
 5. Render automatically:
