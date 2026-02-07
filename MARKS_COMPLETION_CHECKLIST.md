@@ -277,7 +277,7 @@ Frontend:
 
 **Analysis Results**:
 ```
-Last Scan: February 5, 2026
+Last Scan: February 2026
 Status: ✅ PASSING
 Backend: Quality Gate PASSED
 Frontend: Quality Gate PASSED
@@ -557,7 +557,7 @@ Preview (example):
 
 **Deployment Status**:
 ```
-Last Deployment: February 5, 2026 14:30 UTC
+Last Deployment: February 2026
 Status: ✅ READY
 Build Time: 1m 45s
 Deploy Time: 23s

@@ -445,11 +445,10 @@ docker run -p 8081:8081 \
 
 ## 🔗 Important Links
 
-- **GitHub Repository**: https://github.com/your-org/waste-recycling-tracker
+- **GitHub Repository**: https://github.com/devops3rdBCA/WasteRecyclingTracker
 - **Live Demo**: https://waste-recycling-tracker-production.vercel.app
 - **SonarCloud**: https://sonarcloud.io/project/overview
 - **API Documentation**: https://api.waste-tracker.com/swagger-ui.html
-- **Docker Hub**: https://hub.docker.com/r/<dockerhub-username>/waste-tracker
 
 ---
 

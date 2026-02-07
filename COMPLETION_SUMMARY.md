@@ -1,5 +1,5 @@
 # 🎉 PROJECT COMPLETION SUMMARY
-**Waste Recycling Tracker** | **Roll Number: 39** | **February 5, 2026**
+**Waste Recycling Tracker** | **February 2026**
 
 ---
 
@@ -637,7 +637,7 @@ This project is created for academic purposes as part of a course assignment.
 **Final Status**: ✅ READY FOR SUBMISSION  
 **Achievement**: 60/60 Marks (100%)  
 **Grade**: A+  
-**Date**: February 5, 2026
+**Date**: February 2026
 
 ---
 
