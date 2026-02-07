@@ -12,6 +12,9 @@ jobs:
   build-backend:
     name: Build Backend Docker Image
     runs-on: ubuntu-latest
+    env:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     steps:
       - name: Checkout repository
@@ -19,26 +22,39 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        if: env.DOCKER_USERNAME != '' && env.DOCKER_PASSWORD != ''
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Backend Docker image
         uses: docker/build-push-action@v5
         with:
           context: ./backend
-          push: false
-          tags: waste-tracker-backend:latest
+          push: ${{ env.DOCKER_USERNAME != '' && env.DOCKER_PASSWORD != '' }}
+          tags: ${{ env.DOCKER_USERNAME != '' && format('{0}/waste-tracker-backend:latest', secrets.DOCKER_USERNAME) || 'waste-tracker-backend:latest' }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
       - name: Build successful
         run: |
-          echo "✅ Backend Docker image built successfully"
-          echo "Note: Image is not pushed to registry (no Docker Hub secrets configured)"
-          echo "To enable Docker Hub push, configure DOCKER_USERNAME and DOCKER_PASSWORD secrets"
-          echo "See .github/SECRETS.md for more information"
+          if [ -n "$DOCKER_USERNAME" ] && [ -n "$DOCKER_PASSWORD" ]; then
+            echo "✅ Backend Docker image built and pushed to Docker Hub successfully"
+          else
+            echo "✅ Backend Docker image built successfully (local only)"
+            echo "Note: Image is not pushed to registry (no Docker Hub secrets configured)"
+            echo "To enable Docker Hub push, configure DOCKER_USERNAME and DOCKER_PASSWORD secrets"
+          fi
 
   build-frontend:
     name: Build Frontend Docker Image
     runs-on: ubuntu-latest
+    env:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     steps:
       - name: Checkout repository
@@ -47,18 +63,28 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Log in to Docker Hub
+        if: env.DOCKER_USERNAME != '' && env.DOCKER_PASSWORD != ''
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
       - name: Build Frontend Docker image
         uses: docker/build-push-action@v5
         with:
           context: ./frontend
-          push: false
-          tags: waste-tracker-frontend:latest
+          push: ${{ env.DOCKER_USERNAME != '' && env.DOCKER_PASSWORD != '' }}
+          tags: ${{ env.DOCKER_USERNAME != '' && format('{0}/waste-tracker-frontend:latest', secrets.DOCKER_USERNAME) || 'waste-tracker-frontend:latest' }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
       - name: Build successful
         run: |
-          echo "✅ Frontend Docker image built successfully"
-          echo "Note: Image is not pushed to registry (no Docker Hub secrets configured)"
-          echo "To enable Docker Hub push, configure DOCKER_USERNAME and DOCKER_PASSWORD secrets"
-          echo "See .github/SECRETS.md for more information"
+          if [ -n "$DOCKER_USERNAME" ] && [ -n "$DOCKER_PASSWORD" ]; then
+            echo "✅ Frontend Docker image built and pushed to Docker Hub successfully"
+          else
+            echo "✅ Frontend Docker image built successfully (local only)"
+            echo "Note: Image is not pushed to registry (no Docker Hub secrets configured)"
+            echo "To enable Docker Hub push, configure DOCKER_USERNAME and DOCKER_PASSWORD secrets"
+          fi
