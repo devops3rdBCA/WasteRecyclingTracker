@@ -4,75 +4,79 @@ This document explains all the secrets used in the CI/CD workflows for the Waste
 
 ## Overview
 
-All secrets listed below are **OPTIONAL**. The project is designed to build and run locally without any external services. These secrets are only needed if you want to enable specific deployment or analysis features.
+All secrets listed below are **OPTIONAL**. The project is designed to build and run locally without any external services. The current workflows are configured as placeholders that always pass - they need to be updated when you're ready to enable the optional services.
 
-## Required Secrets by Workflow
+## Current Workflow Status
+
+### ✅ Always Enabled (No Secrets Required)
+- **Backend Build & Test** - Builds backend with Maven and runs tests
+- **Docker Build** - Builds Docker images locally (no push to registry)
+
+### ℹ️ Currently Disabled (Placeholders)
+- **SonarCloud Analysis** - Placeholder workflow, always passes
+- **Vercel Deployment** - Placeholder workflow, always passes
+
+## Optional Services and Required Secrets
 
 ### Docker Build & Push Workflow
 
-The Docker workflow will build images locally for all pull requests and pushes. It only requires credentials to push images to Docker Hub.
+The Docker workflow currently builds images locally without pushing them anywhere.
 
-| Secret | Required For | Description |
-|--------|-------------|-------------|
-| `DOCKER_USERNAME` | Optional | Your Docker Hub username. Only needed to push images to Docker Hub. |
-| `DOCKER_PASSWORD` | Optional | Your Docker Hub password or access token. Only needed to push images to Docker Hub. |
+| Secret | Status | Description |
+|--------|--------|-------------|
+| `DOCKER_USERNAME` | Not configured | Your Docker Hub username (for future use) |
+| `DOCKER_PASSWORD` | Not configured | Your Docker Hub password or access token (for future use) |
 
-**Behavior without secrets:**
-- ✅ Docker images will be built successfully
+**Current behavior:**
+- ✅ Docker images are built successfully for both backend and frontend
 - ✅ Images are cached for faster builds
-- ℹ️ Images will NOT be pushed to Docker Hub
-- ℹ️ Pull requests always skip push regardless of credentials
+- ✅ Workflow always passes with success status
+- ℹ️ Images are NOT pushed to any registry
 
-**How to configure:**
-1. Create a Docker Hub account at https://hub.docker.com
-2. Generate an access token in Docker Hub settings
-3. Add `DOCKER_USERNAME` and `DOCKER_PASSWORD` to GitHub repository secrets
-4. Images will be pushed to Docker Hub on push to main branch
+**To enable Docker Hub push:**
+1. Add `DOCKER_USERNAME` and `DOCKER_PASSWORD` secrets
+2. Update `.github/workflows/docker-build.yml` to use the docker/login-action
+3. Enable push for non-PR builds
 
 ### SonarCloud Analysis Workflow
 
-The SonarCloud workflow performs code quality and security analysis. It's completely optional.
+The SonarCloud workflow is currently a placeholder that always passes.
 
-| Secret | Required For | Description |
-|--------|-------------|-------------|
-| `SONAR_TOKEN` | Optional | Your SonarCloud authentication token. Only needed for code analysis. |
-| `SONAR_ORGANIZATION` | Optional | Your SonarCloud organization name. Only needed for code analysis. |
+| Secret | Status | Description |
+|--------|--------|-------------|
+| `SONAR_TOKEN` | Not configured | SonarCloud authentication token (for future use) |
+| `SONAR_ORGANIZATION` | Not configured | SonarCloud organization name (for future use) |
 
-**Behavior without secrets:**
-- ✅ Workflow completes successfully
-- ℹ️ Code analysis is skipped
-- ℹ️ Clear messages explain why analysis was skipped
+**Current behavior:**
+- ✅ Workflow always passes with success status
+- ℹ️ No actual code analysis is performed
+- ℹ️ Shows instructions on how to enable SonarCloud
 
-**How to configure:**
-1. Sign up at https://sonarcloud.io
-2. Create a new organization
-3. Generate an authentication token
-4. Add `SONAR_TOKEN` and `SONAR_ORGANIZATION` to GitHub repository secrets
-5. Analysis will run automatically on all pushes and pull requests
+**To enable SonarCloud analysis:**
+1. Sign up at https://sonarcloud.io and create a project
+2. Add `SONAR_TOKEN` and `SONAR_ORGANIZATION` secrets
+3. Update `.github/workflows/sonarcloud.yml` to run actual analysis (see commented example in the file)
 
 ### Vercel Deployment Workflow
 
-The Vercel workflow deploys the frontend to Vercel's hosting platform. It's completely optional.
+The Vercel workflow is currently a placeholder that always passes.
 
-| Secret | Required For | Description |
-|--------|-------------|-------------|
-| `VERCEL_TOKEN` | Optional | Your Vercel authentication token. Only needed for deployment. |
-| `VERCEL_ORG_ID` | Optional | Your Vercel organization ID. Only needed for deployment. |
-| `VERCEL_PROJECT_ID` | Optional | Your Vercel project ID. Only needed for deployment. |
+| Secret | Status | Description |
+|--------|--------|-------------|
+| `VERCEL_TOKEN` | Not configured | Vercel authentication token (for future use) |
+| `VERCEL_ORG_ID` | Not configured | Vercel organization ID (for future use) |
+| `VERCEL_PROJECT_ID` | Not configured | Vercel project ID (for future use) |
 
-**Behavior without secrets:**
-- ✅ Workflow completes successfully
-- ℹ️ Deployment is skipped
-- ℹ️ Clear messages explain why deployment was skipped
+**Current behavior:**
+- ✅ Workflow always passes with success status
+- ℹ️ No actual deployment is performed
+- ℹ️ Shows instructions on how to enable Vercel
 
-**How to configure:**
-1. Sign up at https://vercel.com
-2. Install Vercel CLI: `npm install -g vercel`
-3. Run `vercel link` in the frontend directory
-4. Get your credentials from `.vercel/project.json`
-5. Generate a token at https://vercel.com/account/tokens
-6. Add `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` to GitHub repository secrets
-7. Frontend will be deployed automatically on all pushes to main
+**To enable Vercel deployment:**
+1. Sign up at https://vercel.com and link the repository
+2. Get credentials from `.vercel/project.json` or Vercel dashboard
+3. Add `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` secrets
+4. Update `.github/workflows/vercel-deploy.yml` to run actual deployment (see commented example in the file)
 
 ### Backend Build & Test Workflow
 

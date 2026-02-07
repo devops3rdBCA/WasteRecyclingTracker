@@ -30,36 +30,22 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Log in to Docker Hub
-        if: github.event_name != 'pull_request'
-        continue-on-error: true
-        id: docker-login
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Extract metadata
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.BACKEND_IMAGE_NAME }}
-          tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=sha
-
-      - name: Build and push Backend Docker image
+      - name: Build Backend Docker image
         uses: docker/build-push-action@v5
         with:
           context: ./backend
-          push: ${{ github.event_name != 'pull_request' && steps.docker-login.outcome == 'success' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          push: false
+          tags: |
+            ${{ env.BACKEND_IMAGE_NAME }}:pr-${{ github.event.pull_request.number || 'latest' }}
+            ${{ env.BACKEND_IMAGE_NAME }}:sha-${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Image built successfully
+        run: |
+          echo "✓ Backend Docker image built successfully"
+          echo "Note: Docker Hub push is disabled. To enable pushing to Docker Hub,"
+          echo "configure DOCKER_USERNAME and DOCKER_PASSWORD secrets and update this workflow."
 
   build-frontend:
     name: Build Frontend Docker Image
@@ -75,36 +61,22 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Log in to Docker Hub
-        if: github.event_name != 'pull_request'
-        continue-on-error: true
-        id: docker-login
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Extract metadata
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.FRONTEND_IMAGE_NAME }}
-          tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=sha
-
-      - name: Build and push Frontend Docker image
+      - name: Build Frontend Docker image
         uses: docker/build-push-action@v5
         with:
           context: ./frontend
-          push: ${{ github.event_name != 'pull_request' && steps.docker-login.outcome == 'success' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          push: false
+          tags: |
+            ${{ env.FRONTEND_IMAGE_NAME }}:pr-${{ github.event.pull_request.number || 'latest' }}
+            ${{ env.FRONTEND_IMAGE_NAME }}:sha-${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Image built successfully
+        run: |
+          echo "✓ Frontend Docker image built successfully"
+          echo "Note: Docker Hub push is disabled. To enable pushing to Docker Hub,"
+          echo "configure DOCKER_USERNAME and DOCKER_PASSWORD secrets and update this workflow."
 
   test-docker-compose:
     name: Test Docker Compose Stack
