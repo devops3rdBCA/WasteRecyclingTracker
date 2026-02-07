@@ -32,10 +32,22 @@ jobs:
 
       - name: Log in to Docker Hub
         if: github.event_name != 'pull_request'
+        continue-on-error: true
+        id: docker-login-backend
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+      
+      - name: Docker Hub login status
+        if: github.event_name != 'pull_request'
+        run: |
+          if [ "${{ steps.docker-login-backend.outcome }}" == "success" ]; then
+            echo "✅ Successfully logged in to Docker Hub"
+          else
+            echo "⚠️ Docker Hub login skipped - credentials not configured"
+            echo "Images will be built but not pushed to Docker Hub"
+          fi
 
       - name: Extract metadata
         id: meta
@@ -53,7 +65,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./backend
-          push: ${{ github.event_name != 'pull_request' }}
+          push: ${{ github.event_name != 'pull_request' && steps.docker-login-backend.outcome == 'success' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
@@ -75,10 +87,22 @@ jobs:
 
       - name: Log in to Docker Hub
         if: github.event_name != 'pull_request'
+        continue-on-error: true
+        id: docker-login-frontend
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+      
+      - name: Docker Hub login status
+        if: github.event_name != 'pull_request'
+        run: |
+          if [ "${{ steps.docker-login-frontend.outcome }}" == "success" ]; then
+            echo "✅ Successfully logged in to Docker Hub"
+          else
+            echo "⚠️ Docker Hub login skipped - credentials not configured"
+            echo "Images will be built but not pushed to Docker Hub"
+          fi
 
       - name: Extract metadata
         id: meta
@@ -96,7 +120,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./frontend
-          push: ${{ github.event_name != 'pull_request' }}
+          push: ${{ github.event_name != 'pull_request' && steps.docker-login-frontend.outcome == 'success' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
