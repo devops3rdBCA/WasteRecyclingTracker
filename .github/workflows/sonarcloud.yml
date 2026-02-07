@@ -19,8 +19,11 @@ jobs:
 
       - name: Check SonarCloud configuration
         id: check-sonar
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
         run: |
-          if [ -z "${{ secrets.SONAR_TOKEN }}" ] || [ -z "${{ secrets.SONAR_ORGANIZATION }}" ]; then
+          if [ -z "$SONAR_TOKEN" ] || [ -z "$SONAR_ORGANIZATION" ]; then
             echo "⚠️ SonarCloud not configured - skipping analysis"
             echo "To enable SonarCloud, configure SONAR_TOKEN and SONAR_ORGANIZATION secrets"
             echo "configured=false" >> $GITHUB_OUTPUT
@@ -69,8 +72,11 @@ jobs:
 
       - name: Check SonarCloud configuration
         id: check-sonar
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
         run: |
-          if [ -z "${{ secrets.SONAR_TOKEN }}" ] || [ -z "${{ secrets.SONAR_ORGANIZATION }}" ]; then
+          if [ -z "$SONAR_TOKEN" ] || [ -z "$SONAR_ORGANIZATION" ]; then
             echo "⚠️ SonarCloud not configured - skipping analysis"
             echo "To enable SonarCloud, configure SONAR_TOKEN and SONAR_ORGANIZATION secrets"
             echo "configured=false" >> $GITHUB_OUTPUT
@@ -97,7 +103,7 @@ jobs:
         if: steps.check-sonar.outputs.configured == 'true'
         run: |
           cd frontend
-          npm run test:coverage || echo "No tests configured yet"
+          npm run test:coverage
 
       - name: SonarCloud Scan
         if: steps.check-sonar.outputs.configured == 'true'
