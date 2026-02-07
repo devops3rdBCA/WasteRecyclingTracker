@@ -314,7 +314,7 @@ echo | openssl s_client -servername waste-recycling-tracker.com \
 ```
 Monitor URL: https://waste-recycling-tracker.com
 Check Interval: 5 minutes
-Alert Email: your.email@example.com
+Alert Email: [Configure your notification email here]
 Alert Types: Down, SSL expiry, slow response
 ```
 
