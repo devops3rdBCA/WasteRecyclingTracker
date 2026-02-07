@@ -34,9 +34,7 @@ jobs:
         if: env.VERCEL_TOKEN != '' && env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != ''
         run: |
           echo "✅ Vercel secrets are configured"
-          echo "Token: ${VERCEL_TOKEN:0:10}... (truncated)"
-          echo "Org ID: ${{ secrets.VERCEL_ORG_ID }}"
-          echo "Project ID: ${{ secrets.VERCEL_PROJECT_ID }}"
+          echo "All required credentials are set"
 
       - name: Deploy to Vercel
         id: vercel-deploy
