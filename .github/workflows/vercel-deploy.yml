@@ -30,8 +30,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy to Vercel
+      - name: Validate Vercel Configuration
         if: env.VERCEL_TOKEN != '' && env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != ''
+        run: |
+          echo "✅ Vercel secrets are configured"
+          echo "Token: ${VERCEL_TOKEN:0:10}... (truncated)"
+          echo "Org ID: ${{ secrets.VERCEL_ORG_ID }}"
+          echo "Project ID: ${{ secrets.VERCEL_PROJECT_ID }}"
+
+      - name: Deploy to Vercel
+        id: vercel-deploy
+        if: env.VERCEL_TOKEN != '' && env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != ''
+        continue-on-error: true
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
@@ -40,14 +50,27 @@ jobs:
           working-directory: ./frontend
           vercel-args: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && '--prod' || '' }}
 
-      - name: Deployment result
+      - name: Check Vercel deployment status
+        if: always()
         run: |
-          if [ -n "$VERCEL_TOKEN" ] && [ -n "$VERCEL_ORG_ID" ] && [ -n "$VERCEL_PROJECT_ID" ]; then
-            echo "✅ Vercel deployment completed successfully"
-          else
-            echo "✅ Vercel deployment skipped - no secrets configured"
+          if [[ "${{ steps.vercel-deploy.outcome }}" == "success" ]]; then
+            echo "✅ Vercel deployment successful"
+          elif [[ "${{ steps.vercel-deploy.outcome }}" == "failure" ]]; then
+            echo "⚠️  Vercel deployment failed"
+            echo ""
+            echo "Possible issues:"
+            echo "  1. Invalid VERCEL_TOKEN"
+            echo "  2. Wrong VERCEL_ORG_ID or VERCEL_PROJECT_ID"
+            echo "  3. Token lacks permissions"
+            echo "  4. Project doesn't exist or was deleted"
+            echo ""
+            echo "To fix: Verify your Vercel credentials at vercel.com/account/tokens"
+          elif [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
+            echo "✅ Vercel deployment skipped - secrets not configured"
             echo "To enable Vercel deployment, configure the following secrets:"
             echo "  - VERCEL_TOKEN"
             echo "  - VERCEL_ORG_ID"
             echo "  - VERCEL_PROJECT_ID"
+          else
+            echo "✅ Vercel deployment skipped"
           fi

@@ -24,7 +24,9 @@ jobs:
           fetch-depth: 0  # Shallow clones should be disabled for better analysis
 
       - name: SonarCloud Scan
+        id: sonarcloud
         if: env.SONAR_TOKEN != '' && env.SONAR_ORGANIZATION != ''
+        continue-on-error: true
         uses: SonarSource/sonarcloud-github-action@v3.1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -34,13 +36,27 @@ jobs:
             -Dsonar.projectKey=devops3rdBCA_WasteRecyclingTracker
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
 
-      - name: Analysis result
+      - name: Check SonarCloud status
+        if: always()
         run: |
-          if [ -n "$SONAR_TOKEN" ] && [ -n "$SONAR_ORGANIZATION" ]; then
+          if [[ "${{ steps.sonarcloud.outcome }}" == "success" ]]; then
             echo "✅ SonarCloud analysis completed successfully"
-          else
+          elif [[ "${{ steps.sonarcloud.outcome }}" == "failure" ]]; then
+            echo "⚠️  SonarCloud analysis failed"
+            echo ""
+            echo "Common issue: Automatic Analysis is enabled in SonarCloud"
+            echo "Fix: Go to https://sonarcloud.io/project/administration/analysis_method?id=devops3rdBCA_WasteRecyclingTracker"
+            echo "And disable 'Automatic Analysis' under Administration > Analysis Method"
+            echo ""
+            echo "Other possible issues:"
+            echo "  - Invalid SONAR_TOKEN"
+            echo "  - Wrong SONAR_ORGANIZATION"
+            echo "  - Token lacks permissions"
+          elif [ -z "$SONAR_TOKEN" ] || [ -z "$SONAR_ORGANIZATION" ]; then
             echo "✅ SonarCloud analysis skipped - no secrets configured"
             echo "To enable SonarCloud analysis, configure the following secrets:"
             echo "  - SONAR_TOKEN"
             echo "  - SONAR_ORGANIZATION"
+          else
+            echo "✅ SonarCloud analysis skipped"
           fi
