@@ -11,6 +11,8 @@ jobs:
   sonarcloud-placeholder:
     name: SonarCloud Analysis (Placeholder)
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Placeholder - SonarCloud analysis skipped
         run: |

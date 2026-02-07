@@ -19,6 +19,8 @@ jobs:
   vercel-placeholder:
     name: Vercel Deployment (Placeholder)
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Placeholder - Vercel deployment skipped
         run: |
