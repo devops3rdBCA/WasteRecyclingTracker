@@ -3,17 +3,9 @@ on:
   push:
     branches:
       - main
-    paths:
-      - backend/**
-      - frontend/**
-      - .github/workflows/backend-build.yml
   pull_request:
     branches:
       - main
-    paths:
-      - backend/**
-      - frontend/**
-      - .github/workflows/backend-build.yml
 
 jobs:
   build:

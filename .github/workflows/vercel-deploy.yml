@@ -3,17 +3,9 @@ on:
   push:
     branches:
       - main
-    paths:
-      - frontend/**
-      - vercel.json
-      - .github/workflows/vercel-deploy.yml
   pull_request:
     branches:
       - main
-    paths:
-      - frontend/**
-      - vercel.json
-      - .github/workflows/vercel-deploy.yml
 
 jobs:
   vercel-status:
