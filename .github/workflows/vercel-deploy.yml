@@ -22,27 +22,44 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Check Vercel credentials
+        id: vercel-check
+        run: |
+          if [ -n "${{ secrets.VERCEL_TOKEN }}" ] && [ -n "${{ secrets.VERCEL_ORG_ID }}" ] && [ -n "${{ secrets.VERCEL_PROJECT_ID }}" ]; then
+            echo "has_credentials=true" >> $GITHUB_OUTPUT
+            echo "Vercel credentials available - will deploy preview"
+          else
+            echo "has_credentials=false" >> $GITHUB_OUTPUT
+            echo "Vercel credentials not available - skipping deployment"
+            echo "To enable Vercel deployment, configure VERCEL_TOKEN, VERCEL_ORG_ID, and VERCEL_PROJECT_ID secrets"
+          fi
+
       - name: Set up Node.js
+        if: steps.vercel-check.outputs.has_credentials == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
       - name: Install Vercel CLI
+        if: steps.vercel-check.outputs.has_credentials == 'true'
         run: npm install --global vercel@latest
 
       - name: Pull Vercel Environment Information (Preview)
+        if: steps.vercel-check.outputs.has_credentials == 'true'
         run: cd frontend && vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
       - name: Build Project Artifacts (Preview)
+        if: steps.vercel-check.outputs.has_credentials == 'true'
         run: cd frontend && vercel build --token=${{ secrets.VERCEL_TOKEN }}
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
       - name: Deploy Project Artifacts to Vercel (Preview)
+        if: steps.vercel-check.outputs.has_credentials == 'true'
         run: cd frontend && vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -54,27 +71,44 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Check Vercel credentials
+        id: vercel-check
+        run: |
+          if [ -n "${{ secrets.VERCEL_TOKEN }}" ] && [ -n "${{ secrets.VERCEL_ORG_ID }}" ] && [ -n "${{ secrets.VERCEL_PROJECT_ID }}" ]; then
+            echo "has_credentials=true" >> $GITHUB_OUTPUT
+            echo "Vercel credentials available - will deploy to production"
+          else
+            echo "has_credentials=false" >> $GITHUB_OUTPUT
+            echo "Vercel credentials not available - skipping deployment"
+            echo "To enable Vercel deployment, configure VERCEL_TOKEN, VERCEL_ORG_ID, and VERCEL_PROJECT_ID secrets"
+          fi
+
       - name: Set up Node.js
+        if: steps.vercel-check.outputs.has_credentials == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
       - name: Install Vercel CLI
+        if: steps.vercel-check.outputs.has_credentials == 'true'
         run: npm install --global vercel@latest
 
       - name: Pull Vercel Environment Information (Production)
+        if: steps.vercel-check.outputs.has_credentials == 'true'
         run: cd frontend && vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
       - name: Build Project Artifacts (Production)
+        if: steps.vercel-check.outputs.has_credentials == 'true'
         run: cd frontend && vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
       - name: Deploy Project Artifacts to Vercel (Production)
+        if: steps.vercel-check.outputs.has_credentials == 'true'
         run: cd frontend && vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
