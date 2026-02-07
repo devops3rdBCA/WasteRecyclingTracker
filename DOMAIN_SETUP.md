@@ -1,5 +1,5 @@
 # 🌐 DOMAIN NAME CONFIGURATION GUIDE
-**Custom Domain**: waste-recycling-tracker.com | Roll Number: 39
+**Custom Domain**: waste-recycling-tracker.com
 
 ---
 
@@ -497,7 +497,7 @@ Domain: waste-recycling-tracker.com
 Status: [Propagating / Active]
 SSL: [Pending / Issued]
 Performance: [Normal / Optimal]
-Last Checked: February 5, 2026
+Last Checked: February 2026
 ```
 
 ---
@@ -522,4 +522,4 @@ Your custom domain `waste-recycling-tracker.com` is now configured and ready to 
 
 ---
 
-**Prepared by**: [Your Name] | **Roll**: 39 | **Date**: February 5, 2026
+**BCA III Year** | **February 2026**

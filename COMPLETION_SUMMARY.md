@@ -1,5 +1,5 @@
 # 🎉 PROJECT COMPLETION SUMMARY
-**Waste Recycling Tracker** | **Roll Number: 39** | **February 5, 2026**
+**Waste Recycling Tracker** | **February 2026**
 
 ---
 
@@ -236,8 +236,8 @@ Frontend:
 
 **Images:**
 ```
-docker.io/username/waste-tracker-backend:latest (245 MB)
-docker.io/username/waste-tracker-frontend:latest (89 MB)
+docker.io/<dockerhub-username>/waste-tracker-backend:latest (245 MB)
+docker.io/<dockerhub-username>/waste-tracker-frontend:latest (89 MB)
 ```
 
 ---
@@ -459,14 +459,14 @@ SonarCloud Analysis:
 
 ### Container Images
 ```
-✅ Backend: docker.io/username/waste-tracker-backend:latest
-✅ Frontend: docker.io/username/waste-tracker-frontend:latest
+✅ Backend: docker.io/<dockerhub-username>/waste-tracker-backend:latest
+✅ Frontend: docker.io/<dockerhub-username>/waste-tracker-frontend:latest
 ```
 
 ### GitHub Resources
 ```
-✅ Repository: https://github.com/Jeynisha36/WasteRecyclingTracker
-✅ Actions: https://github.com/Jeynisha36/WasteRecyclingTracker/actions
+✅ Repository: https://github.com/devops3rdBCA/WasteRecyclingTracker
+✅ Actions: https://github.com/devops3rdBCA/WasteRecyclingTracker/actions
 ✅ SonarCloud: https://sonarcloud.io/project/overview
 ```
 
@@ -531,8 +531,8 @@ SonarCloud Analysis:
 
 ### Live Resources
 - 🌐 [Production App](https://waste-recycling-tracker.com)
-- 🔗 [GitHub Repo](https://github.com/Jeynisha36/WasteRecyclingTracker)
-- 📊 [GitHub Actions](https://github.com/Jeynisha36/WasteRecyclingTracker/actions)
+- 🔗 [GitHub Repo](https://github.com/devops3rdBCA/WasteRecyclingTracker)
+- 📊 [GitHub Actions](https://github.com/devops3rdBCA/WasteRecyclingTracker/actions)
 - 🔍 [SonarCloud Dashboard](https://sonarcloud.io)
 
 ---
@@ -607,19 +607,11 @@ SonarCloud Analysis:
 
 ---
 
-## 📞 CONTACT INFORMATION
+## 📞 PROJECT INFORMATION
 
-**Student Details:**
-- **Name**: [Your Name]
-- **Roll Number**: 39
-- **Email**: [your.email@example.com]
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-
-**Project Information:**
-- **Project Name**: Waste Recycling Tracker
-- **Repository**: https://github.com/Jeynisha36/WasteRecyclingTracker
-- **Live URL**: https://waste-recycling-tracker.com
-- **Completion Date**: February 5, 2026
+**Repository**: https://github.com/devops3rdBCA/WasteRecyclingTracker  
+**Student**: BCA III Year  
+**Completion Date**: February 2026
 
 ---
 
@@ -645,7 +637,7 @@ This project is created for academic purposes as part of a course assignment.
 **Final Status**: ✅ READY FOR SUBMISSION  
 **Achievement**: 60/60 Marks (100%)  
 **Grade**: A+  
-**Date**: February 5, 2026
+**Date**: February 2026
 
 ---
 

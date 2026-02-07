@@ -7,7 +7,7 @@ SonarCloud provides automated code quality and security analysis for your projec
 
 ## Prerequisites
 - ✅ GitHub account
-- ✅ Project pushed to GitHub: `https://github.com/Jeynisha36/WasteRecyclingTracker`
+- ✅ Project pushed to GitHub: `https://github.com/devops3rdBCA/WasteRecyclingTracker`
 - ✅ CI/CD workflow already configured (ready for Sonar)
 
 ---
@@ -79,7 +79,7 @@ https://sonarcloud.io
 
 1. Go to your GitHub repo:
    ```
-   https://github.com/Jeynisha36/WasteRecyclingTracker/settings/secrets/actions
+   https://github.com/devops3rdBCA/WasteRecyclingTracker/settings/secrets/actions
    ```
 
 2. Click **New repository secret**

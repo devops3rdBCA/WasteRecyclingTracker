@@ -13,7 +13,7 @@
 **Option A: From GitHub (Recommended)**
 1. In Railway dashboard, click "New Project"
 2. Select "Deploy from GitHub repo"
-3. Choose: `Jeynisha36/WasteRecyclingTracker`
+3. Choose: `devops3rdBCA/WasteRecyclingTracker`
 4. Select `backend` folder (when prompted)
 5. Click "Deploy"
 

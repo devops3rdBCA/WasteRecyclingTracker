@@ -1,10 +1,10 @@
 #!/usr/bin/env pwsh
 # Quick Setup Script for Enabling All Workflows
-# Roll Number 39 - Waste Recycling Tracker
+# Waste Recycling Tracker
 
 Write-Host ""
 Write-Host "================================================================" -ForegroundColor Cyan
-Write-Host "   WORKFLOW ENABLEMENT WIZARD - ROLL NUMBER 39   " -ForegroundColor Green
+Write-Host "   WORKFLOW ENABLEMENT WIZARD   " -ForegroundColor Green
 Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host ""
 
