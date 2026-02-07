@@ -1,82 +1,19 @@
 name: SonarCloud Analysis
-
 on:
-  push:
-    branches:
-      - main
   pull_request:
-    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
 
 jobs:
-  sonarcloud-backend:
-    name: SonarCloud Backend Analysis
+  sonarcloud-status:
+    name: SonarCloud Analysis Status
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for better relevancy
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: maven
-
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-
-      - name: Build and analyze backend
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      
+      - name: SonarCloud analysis skipped
         run: |
-          cd backend
-          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-            -Dsonar.projectKey=${{ secrets.SONAR_ORGANIZATION }}_waste-recycling-tracker-backend \
-            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
-
-  sonarcloud-frontend:
-    name: SonarCloud Frontend Analysis
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: frontend/package-lock.json
-
-      - name: Install dependencies
-        run: |
-          cd frontend
-          npm ci
-
-      - name: Run tests with coverage
-        run: |
-          cd frontend
-          npm run test:coverage || echo "No tests configured yet"
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          projectBaseDir: frontend
-          args: >
-            -Dsonar.projectKey=${{ secrets.SONAR_ORGANIZATION }}_waste-recycling-tracker-frontend
-            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-            -Dsonar.sources=src
-            -Dsonar.exclusions=**/*.test.js,**/*.test.jsx,**/node_modules/**
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+          echo "ℹ️  SonarCloud analysis is not configured for this repository"
+          echo ""
+          echo "SonarCloud provides code quality and security analysis."
+          echo "To enable it, see .github/SECRETS.md for more information."
