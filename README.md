@@ -66,6 +66,7 @@ npm run dev
 bash
 # Run both frontend and backend with Docker
 docker-compose up -d
+<img width="1366" height="768" alt="Screenshot (54)" src="https://github.com/user-attachments/assets/27935e5d-ad3d-491b-8638-4020f187e582" />
 
 
 🔧 Environment Setup -
