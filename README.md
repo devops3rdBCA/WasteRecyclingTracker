@@ -61,10 +61,12 @@ mvn spring-boot:run
 cd frontend
 npm install
 npm run dev
+
 🐳 Docker Setup
 bash
 # Run both frontend and backend with Docker
 docker-compose up -d
+
 
 🔧 Environment Setup -
 Copy .env.example to .env and fill in:
@@ -101,6 +103,12 @@ GET /api/admin/users.
  * Set REACT_APP_API_URL in Vercel settings
 
  * Deploy!
+ 
+ * <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a8a4d5f1-095e-4221-8ac1-65f4a3414a75" />
+ <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/0c685441-8862-4d69-8457-53d274893702" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/057fe4b9-031c-40b4-86af-4bad5787624c" />
+
 
 🛡️ Security -
  * Role-based access (Family, Center, Admin)
