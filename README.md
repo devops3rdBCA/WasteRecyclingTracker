@@ -109,6 +109,9 @@ GET /api/admin/users.
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/057fe4b9-031c-40b4-86af-4bad5787624c" />
 
+Sonar Cloud Quality Check:
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4290fd29-6036-48d3-9c23-a2db7b5f2ebd" />
 
 🛡️ Security -
  * Role-based access (Family, Center, Admin)
