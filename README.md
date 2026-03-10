@@ -1,4 +1,3 @@
-
 Frontend update for DevOps Pull Request demonstration file.
 # Waste Recycling Tracker – Frontend
 
