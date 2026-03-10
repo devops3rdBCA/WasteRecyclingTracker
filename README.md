@@ -1,4 +1,5 @@
-Frontend README updated for DevOps Pull Request demonstration.
+ frontend-readme-update
+
 # Waste Recycling Tracker – Frontend
 This repository contains the **frontend application** for the Waste Recycling Tracker project.
 It is built using **React and Vite** and provides the user interface for families and recycling centers to manage recyclable waste entries.
@@ -140,32 +141,3 @@ VITE_API_URL = your backend API URL
 
 5. Deploy the project
 
----
-
-## Docker
-
-Build Docker image:
-
-```
-docker build -t waste-recycling-frontend .
-```
-
-Run container:
-
-```
-docker run -p 3000:3000 waste-recycling-frontend
-```
-
----
-
-## Related Repository
-
-Backend Repository:
-https://github.com/jeynisha36/WasteRecyclingTracker-backend
-
----
-
-## Author
-
-Developed by **Jeynisha E**
-BCA Student | Aspiring Full-Stack Developer
