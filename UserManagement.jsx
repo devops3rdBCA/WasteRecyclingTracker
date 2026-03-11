@@ -19,7 +19,6 @@ import Divider from '@mui/material/Divider';
 
 const UserManagement = () => {
   const [familyName, setFamilyName] = useState('');
-  const [password, setPassword] = useState('');
   const [users, setUsers] = useState([]);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -55,25 +54,25 @@ const UserManagement = () => {
       return;
     }
 
-    // All families use password '123'
-    const newUser = { id: Date.now(), familyName: familyName.trim(), password: '123' };
+    // Store family without a hard-coded password
+    const newUser = { id: Date.now(), familyName: familyName.trim() };
     const updated = [...users, newUser];
     localStorage.setItem('family-users', JSON.stringify(updated));
     setUsers(updated);
-    setSuccess(`${familyName} added successfully! (Password: 123)`);
+    setSuccess(`${familyName} added successfully!`);
     setFamilyName('');
   };
 
   const handleDeleteUser = (id) => {
     const updated = users.filter((u) => u.id !== id);
     localStorage.setItem('family-users', JSON.stringify(updated));
-    
+
     // Also delete their entries
     const familyToDelete = users.find((u) => u.id === id);
     if (familyToDelete) {
       localStorage.removeItem(`family-${familyToDelete.familyName}`);
     }
-    
+
     setUsers(updated);
     setSuccess(`User deleted.`);
   };
@@ -94,9 +93,6 @@ const UserManagement = () => {
                 fullWidth
                 placeholder="e.g., Smith, Patel, Johnson"
               />
-              <Typography variant="body2" color="primary">
-                <strong>Password: 123</strong> (all families)
-              </Typography>
               <Button type="submit" variant="contained">Add Family (Max 10)</Button>
             </Stack>
           </form>
