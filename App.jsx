@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import LoginPage from './components/LoginPage';
+import LoginPage from './LoginPage';
 import FamilyDashboard from './components/FamilyDashboard';
 import CenterDashboard from './components/CenterDashboard';
 import StatisticsDashboard from './components/StatisticsDashboard';
@@ -43,3 +43,4 @@ const App = () => {
 };
 
 export default App;
+
