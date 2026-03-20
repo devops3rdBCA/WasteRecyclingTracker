@@ -17,7 +17,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'    # Or your preferred version!
+          node-version: '18.x'
 
       - name: Install dependencies
         run: npm install
@@ -35,6 +35,6 @@ jobs:
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'frontend-rg'   # <-- Ensure this is your Azure app name!
+          app-name: 'frontend-rg'   # Change this only if your Azure App Service has a different name
           slot-name: 'Production'
-          package: 'build'          # <-- This deploys the React "build" folder
+          package: 'build'          # Deploy the build folder (correct for React)
