@@ -36,9 +36,9 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A0B164FF8BA6452589C99D34E8D7B75C }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_C8D140BA84584CCC95E8B75BFC23D264 }}
 
-      - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: 'frontend-rg'    # Your Azure App Service name
+       - name: Deploy to Azure Web App
+         uses: azure/webapps-deploy@v3
+         with:
+          app-name: 'frontend-rg'
           slot-name: 'Production'
-          package: 'dist'            # Correct folder for Vite/React build output
+          package: 'dist'
