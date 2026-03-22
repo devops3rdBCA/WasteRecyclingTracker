@@ -24,7 +24,10 @@ jobs:
           node-version: '18.x'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Ensure vite is executable (rare Linux fix)
+        run: chmod +x node_modules/.bin/vite
 
       - name: Build React app
         run: npm run build
