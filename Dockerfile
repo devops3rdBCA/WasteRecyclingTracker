@@ -28,15 +28,11 @@ RUN npm install -g serve
 # Copy built files from builder stage
 COPY --from=builder /build/dist ./dist
 
-# Create non-root user and ensure /app exists before chown
-RUN addgroup -g 1000 appuser 2>/dev/null || true
-RUN adduser -D -u 1000 -G appuser appuser 2>/dev/null || true
-RUN mkdir -p /app && chown -R appuser:appuser /app
-# Ensure /app directory exists, user and group gets created, ownership set
-RUN mkdir -p /app
-RUN addgroup -g 1000 appuser || true
-RUN adduser -D -u 1000 -G appuser appuser || true
-RUN chown -R appuser:appuser /app
+# Create non-root user, group, and set ownership in a single step
+RUN addgroup -g 1000 appuser && \
+    adduser -D -u 1000 -G appuser appuser && \
+    mkdir -p /app && \
+    chown -R appuser:appuser /app
 
 
 USER appuser
