@@ -28,11 +28,11 @@ RUN npm install -g serve
 # Copy built files from builder stage
 COPY --from=builder /build/dist ./dist
 
-# Create /app (ensure exists), create user/group if missing, assign ownership
-RUN mkdir -p /app && \
-    addgroup -g 1000 appuser || true && \
-    adduser -D -u 1000 -G appuser appuser || true && \
-    chown -R appuser:appuser /app
+# Ensure /app directory exists, user and group gets created, ownership set
+RUN mkdir -p /app
+RUN addgroup -g 1000 appuser || true
+RUN adduser -D -u 1000 -G appuser appuser || true
+RUN chown -R appuser:appuser /app
 
 USER appuser
 
