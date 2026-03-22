@@ -21,21 +21,29 @@ RUN npm install -g serve
 RUN addgroup -g 1000 appuser 2>/dev/null || true
 RUN adduser -D -u 1000 -G appuser appuser 2>/dev/null || true
 
-# Ensure /app exists and correct ownership
-RUN mkdir -p /app && chown -R appuser:appuser /app
+# === BEGIN DIAGNOSTIC SECTION ===
+
+# Show current groups and users
+RUN echo "=== /etc/group ===" && cat /etc/group
+RUN echo "=== /etc/passwd ===" && cat /etc/passwd
+
+# Ensure /app exists and show its details
+RUN mkdir -p /app
+RUN echo "=== /app directory details ===" && ls -ld /app
+
+# Attempt to change ownership
+RUN chown -R appuser:appuser /app
+
+# === END DIAGNOSTIC SECTION ===
 
 # Copy built files from builder stage
 COPY --from=builder /build/dist ./dist
 
 USER appuser
 
-# Health check (optional but recommended)
 HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
     CMD wget --quiet --tries=1 --spider http://localhost:3000/ || exit 1
 
-# Expose port and set environment
 EXPOSE 3000
 ENV NODE_ENV=production
-
-# Run the server
 CMD ["serve", "-s", "dist", "-l", "3000"]
