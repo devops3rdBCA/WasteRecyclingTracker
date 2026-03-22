@@ -1,46 +1,31 @@
-import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import LoginPage from './LoginPage';
+import React from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import FamilyDashboard from './FamilyDashboard';
 import CenterDashboard from './CenterDashboard';
 import StatisticsDashboard from './StatisticsDashboard';
-import Navbar from './Navbar';
 
-const App = () => {
-  const [role, setRole] = useState(null);
-  const [familyName, setFamilyName] = useState('');
 
-  const handleLogin = (selectedRole, name = '') => {
-    setRole(selectedRole);
-    setFamilyName(name);
-  };
+const Home = () => (
+  <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+    <h1>Welcome to WasteRecyclingTracker</h1>
+    <div style={{ margin: '2rem' }}>
+      <Link to="/family"><button>Family Dashboard</button></Link>
+      <Link to="/center" style={{ marginLeft: '1rem' }}><button>Center Dashboard</button></Link>
+      <Link to="/statistics" style={{ marginLeft: '1rem' }}><button>Statistics Dashboard</button></Link>
+    </div>
+  </div>
+);
 
-  const handleLogout = () => {
-    setRole(null);
-    setFamilyName('');
-  };
-
-  return (
-    <BrowserRouter>
-      <Navbar role={role} onLogout={handleLogout} />
-      <Routes>
-        <Route path="/" element={<LoginPage onLogin={handleLogin} />} />
-        <Route
-          path="/family"
-          element={
-            role === 'family' ? <FamilyDashboard familyName={familyName} /> : <Navigate to="/" replace />
-          }
-        />
-        <Route
-          path="/center"
-          element={role === 'center' ? <CenterDashboard /> : <Navigate to="/" replace />}
-        />
-        <Route path="/statistics" element={<StatisticsDashboard />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </BrowserRouter>
-  );
-};
+const App = () => (
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/family" element={<FamilyDashboard />} />
+      <Route path="/center" element={<CenterDashboard />} />
+      <Route path="/statistics" element={<StatisticsDashboard />} />
+    </Routes>
+  </BrowserRouter>
+);
 
 export default App;
 
