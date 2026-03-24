@@ -35,7 +35,7 @@ const StatisticsDashboard = () => {
       {/* Key Metrics */}
       <div className="row mb-4">
         <div className="col-md-3 mb-3">
-          <div className="card bg-primary text-white">
+          <div className="card text-white" style={{ background: 'linear-gradient(135deg, #4f8cff 60%, #6dd5ed 100%)', border: 'none' }}>
             <div className="card-body">
               <h5 className="card-title">Total Entries</h5>
               <h2>{stats.totalEntries || 0}</h2>
@@ -43,7 +43,7 @@ const StatisticsDashboard = () => {
           </div>
         </div>
         <div className="col-md-3 mb-3">
-          <div className="card bg-success text-white">
+          <div className="card text-white" style={{ background: 'linear-gradient(135deg, #43cea2 60%, #185a9d 100%)', border: 'none' }}>
             <div className="card-body">
               <h5 className="card-title">Total Quantity (kg)</h5>
               <h2>{(stats.totalQuantity || 0).toFixed(2)}</h2>
@@ -51,7 +51,7 @@ const StatisticsDashboard = () => {
           </div>
         </div>
         <div className="col-md-3 mb-3">
-          <div className="card bg-info text-white">
+          <div className="card text-white" style={{ background: 'linear-gradient(135deg, #36d1c4 60%, #5b86e5 100%)', border: 'none' }}>
             <div className="card-body">
               <h5 className="card-title">Families</h5>
               <h2>{stats.totalFamilies || 0}</h2>
@@ -59,7 +59,7 @@ const StatisticsDashboard = () => {
           </div>
         </div>
         <div className="col-md-3 mb-3">
-          <div className="card bg-warning text-white">
+          <div className="card text-white" style={{ background: 'linear-gradient(135deg, #f7971e 60%, #ffd200 100%)', border: 'none' }}>
             <div className="card-body">
               <h5 className="card-title">Recycled (kg)</h5>
               <h2>{(stats.statusQuantity?.RECYCLED || 0).toFixed(2)}</h2>
@@ -76,15 +76,15 @@ const StatisticsDashboard = () => {
               <h5 className="card-title">Status Breakdown</h5>
               <ul className="list-unstyled">
                 <li className="mb-2">
-                  <span className="badge bg-warning">Pending</span>
+                  <span className="badge" style={{ background: 'linear-gradient(90deg, #ffd200 60%, #f7971e 100%)', color: '#333' }}>Pending</span>
                   <strong className="ms-2">{stats.pendingEntries || 0}</strong>
                 </li>
                 <li className="mb-2">
-                  <span className="badge bg-info">Processing</span>
+                  <span className="badge" style={{ background: 'linear-gradient(90deg, #36d1c4 60%, #5b86e5 100%)', color: '#fff' }}>Processing</span>
                   <strong className="ms-2">{stats.processingEntries || 0}</strong>
                 </li>
                 <li className="mb-2">
-                  <span className="badge bg-success">Recycled</span>
+                  <span className="badge" style={{ background: 'linear-gradient(90deg, #43cea2 60%, #185a9d 100%)', color: '#fff' }}>Recycled</span>
                   <strong className="ms-2">{stats.recycledEntries || 0}</strong>
                 </li>
               </ul>
@@ -128,15 +128,15 @@ const StatisticsDashboard = () => {
           <h5 className="card-title">Quantity by Status (kg)</h5>
           <div className="row text-center">
             <div className="col-md-4">
-              <h6 className="text-warning">Pending</h6>
+              <h6 style={{ color: '#f7971e' }}>Pending</h6>
               <h4>{(stats.statusQuantity?.PENDING || 0).toFixed(2)}</h4>
             </div>
             <div className="col-md-4">
-              <h6 className="text-info">Processing</h6>
+              <h6 style={{ color: '#5b86e5' }}>Processing</h6>
               <h4>{(stats.statusQuantity?.PROCESSING || 0).toFixed(2)}</h4>
             </div>
             <div className="col-md-4">
-              <h6 className="text-success">Recycled</h6>
+              <h6 style={{ color: '#43cea2' }}>Recycled</h6>
               <h4>{(stats.statusQuantity?.RECYCLED || 0).toFixed(2)}</h4>
             </div>
           </div>
